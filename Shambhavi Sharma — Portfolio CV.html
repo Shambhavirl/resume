@@ -1,0 +1,1413 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Shambhavi Sharma — CV</title>
+<link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323:wght@400&family=Silkscreen:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --red: #E50914;
+    --dark: #0a0a0a;
+    --darker: #060606;
+    --card-bg: #1a1a1a;
+    --card-hover: #2a2a2a;
+    --text: #e5e5e5;
+    --muted: #999;
+    --gold: #f5c518;
+    --pixel-green: #00ff41;
+    --pixel-pink: #ff6eb4;
+    --pixel-blue: #00bfff;
+    --pixel-yellow: #ffe066;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  * { cursor: none !important; }
+  #cursor {
+    position: fixed;
+    width: 20px;
+    height: 20px;
+    pointer-events: none;
+    z-index: 99999;
+    image-rendering: pixelated;
+    transition: transform 0.1s;
+  }
+  #cursor svg { width: 20px; height: 20px; }
+
+  body {
+    background: var(--darker);
+    color: var(--text);
+    font-family: 'VT323', monospace;
+    font-size: 18px;
+    overflow-x: hidden;
+    min-height: 100vh;
+  }
+
+  body::before {
+    content: '';
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: repeating-linear-gradient(
+      0deg,
+      transparent,
+      transparent 2px,
+      rgba(0,0,0,0.15) 2px,
+      rgba(0,0,0,0.15) 4px
+    );
+    pointer-events: none;
+    z-index: 9998;
+  }
+
+  body::after {
+    content: '';
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 9997;
+    opacity: 0.4;
+  }
+
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 1000;
+    padding: 16px 48px;
+    display: flex;
+    align-items: center;
+    gap: 32px;
+    background: linear-gradient(to bottom, rgba(0,0,0,0.9) 0%, transparent 100%);
+    transition: background 0.3s;
+  }
+  nav.scrolled { background: rgba(0,0,0,0.95); }
+  .nav-logo {
+    font-family: 'Press Start 2P', monospace;
+    font-size: 22px;
+    color: var(--red);
+    letter-spacing: 2px;
+    text-shadow: 3px 3px 0 #8b0000, 0 0 20px rgba(229,9,20,0.5);
+    animation: flicker 4s infinite;
+  }
+  @keyframes flicker {
+    0%,95%,100% { opacity: 1; }
+    96% { opacity: 0.8; }
+    97% { opacity: 1; }
+    98% { opacity: 0.6; }
+    99% { opacity: 1; }
+  }
+  .nav-links { display: flex; gap: 24px; list-style: none; }
+  .nav-links a {
+    font-family: 'VT323', monospace;
+    font-size: 20px;
+    color: var(--text);
+    text-decoration: none;
+    letter-spacing: 1px;
+    transition: color 0.2s;
+    position: relative;
+  }
+  .nav-links a:hover { color: var(--pixel-green); }
+  .nav-links a::after {
+    content: '';
+    position: absolute;
+    bottom: -2px; left: 0; right: 0;
+    height: 2px;
+    background: var(--pixel-green);
+    transform: scaleX(0);
+    transition: transform 0.2s;
+  }
+  .nav-links a:hover::after { transform: scaleX(1); }
+  .nav-right { margin-left: auto; display: flex; align-items: center; gap: 16px; }
+  .pixel-badge {
+    font-family: 'Press Start 2P', monospace;
+    font-size: 8px;
+    background: var(--red);
+    color: white;
+    padding: 6px 10px;
+    border: 2px solid #ff4444;
+    box-shadow: 2px 2px 0 #8b0000;
+    animation: pulse-badge 2s infinite;
+  }
+  @keyframes pulse-badge {
+    0%,100% { box-shadow: 2px 2px 0 #8b0000; }
+    50% { box-shadow: 2px 2px 0 #8b0000, 0 0 10px rgba(229,9,20,0.6); }
+  }
+
+  .hero {
+    position: relative;
+    height: 88vh;
+    min-height: 500px;
+    display: flex;
+    align-items: flex-end;
+    padding: 0 48px 80px;
+    overflow: hidden;
+  }
+  .hero-bg {
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(ellipse at 70% 40%, rgba(229,9,20,0.15) 0%, transparent 60%),
+      radial-gradient(ellipse at 20% 60%, rgba(0,191,255,0.08) 0%, transparent 50%),
+      linear-gradient(135deg, #0a0a0a 0%, #1a0000 50%, #0a0a0a 100%);
+  }
+  .hero-grid {
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(229,9,20,0.05) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(229,9,20,0.05) 1px, transparent 1px);
+    background-size: 40px 40px;
+    animation: grid-scroll 20s linear infinite;
+  }
+  @keyframes grid-scroll {
+    0% { transform: perspective(500px) rotateX(20deg) translateY(0); }
+    100% { transform: perspective(500px) rotateX(20deg) translateY(40px); }
+  }
+  .hero-pixels { position: absolute; inset: 0; overflow: hidden; }
+  .pixel-dot {
+    position: absolute;
+    width: 4px;
+    height: 4px;
+    background: var(--red);
+    animation: float-pixel linear infinite;
+    image-rendering: pixelated;
+  }
+  @keyframes float-pixel {
+    0% { transform: translateY(100vh) rotate(0deg); opacity: 0; }
+    10% { opacity: 1; }
+    90% { opacity: 1; }
+    100% { transform: translateY(-10vh) rotate(360deg); opacity: 0; }
+  }
+  .hero-content { position: relative; z-index: 2; max-width: 600px; }
+  .hero-label {
+    font-family: 'Press Start 2P', monospace;
+    font-size: 9px;
+    color: var(--muted);
+    letter-spacing: 4px;
+    margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .hero-label::before { content: '▶'; color: var(--red); font-size: 10px; }
+  .hero-name {
+    font-family: 'Press Start 2P', monospace;
+    font-size: clamp(28px, 5vw, 52px);
+    line-height: 1.3;
+    color: white;
+    text-shadow: 4px 4px 0 var(--red), 8px 8px 0 rgba(229,9,20,0.3);
+    margin-bottom: 8px;
+    animation: text-glitch 6s infinite;
+  }
+  @keyframes text-glitch {
+    0%,94%,100% { text-shadow: 4px 4px 0 var(--red), 8px 8px 0 rgba(229,9,20,0.3); transform: translate(0); }
+    95% { text-shadow: -2px 4px 0 #00bfff, 6px 8px 0 var(--red); transform: translate(2px, -1px); }
+    96% { text-shadow: 4px -2px 0 var(--pixel-pink), 8px 8px 0 rgba(229,9,20,0.3); transform: translate(-1px, 1px); }
+    97% { text-shadow: 4px 4px 0 var(--red); transform: translate(0); }
+  }
+  .hero-subtitle {
+    font-family: 'VT323', monospace;
+    font-size: 28px;
+    color: var(--pixel-green);
+    letter-spacing: 3px;
+    margin-bottom: 20px;
+    text-shadow: 0 0 10px rgba(0,255,65,0.5);
+  }
+  .hero-desc {
+    font-family: 'VT323', monospace;
+    font-size: 20px;
+    color: #aaa;
+    line-height: 1.6;
+    max-width: 480px;
+    margin-bottom: 32px;
+  }
+  .hero-stats {
+    display: flex;
+    gap: 24px;
+    margin-bottom: 32px;
+    flex-wrap: wrap;
+  }
+  .stat-box {
+    background: rgba(255,255,255,0.05);
+    border: 2px solid rgba(255,255,255,0.1);
+    padding: 10px 16px;
+    text-align: center;
+    position: relative;
+    transition: all 0.2s;
+  }
+  .stat-box:hover {
+    border-color: var(--pixel-green);
+    background: rgba(0,255,65,0.05);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 0 rgba(0,255,65,0.2);
+  }
+  .stat-num {
+    font-family: 'Press Start 2P', monospace;
+    font-size: 16px;
+    color: var(--pixel-yellow);
+    display: block;
+  }
+  .stat-label {
+    font-family: 'VT323', monospace;
+    font-size: 16px;
+    color: var(--muted);
+    display: block;
+    margin-top: 4px;
+  }
+  .hero-buttons { display: flex; gap: 16px; flex-wrap: wrap; }
+  .btn-primary {
+    font-family: 'Press Start 2P', monospace;
+    font-size: 10px;
+    background: white;
+    color: black;
+    border: none;
+    padding: 14px 24px;
+    letter-spacing: 1px;
+    transition: all 0.15s;
+    box-shadow: 3px 3px 0 #999;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .btn-primary:hover { background: #ddd; transform: translate(-2px, -2px); box-shadow: 5px 5px 0 #999; }
+  .btn-secondary {
+    font-family: 'Press Start 2P', monospace;
+    font-size: 10px;
+    background: rgba(109,109,110,0.7);
+    color: white;
+    border: 2px solid rgba(255,255,255,0.3);
+    padding: 14px 24px;
+    letter-spacing: 1px;
+    transition: all 0.15s;
+    box-shadow: 3px 3px 0 rgba(0,0,0,0.5);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .btn-secondary:hover { background: rgba(109,109,110,0.9); transform: translate(-2px, -2px); box-shadow: 5px 5px 0 rgba(0,0,0,0.5); }
+  .hero-scroll-hint {
+    position: absolute;
+    bottom: 24px;
+    right: 48px;
+    font-family: 'Press Start 2P', monospace;
+    font-size: 8px;
+    color: var(--muted);
+    animation: bounce 2s infinite;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  @keyframes bounce {
+    0%,100% { transform: translateY(0); }
+    50% { transform: translateY(6px); }
+  }
+
+  .section-row { padding: 0 48px; margin-bottom: 48px; }
+  .row-header {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 20px;
+  }
+  .row-title {
+    font-family: 'Press Start 2P', monospace;
+    font-size: 14px;
+    color: white;
+    letter-spacing: 1px;
+  }
+  .row-tag {
+    font-family: 'VT323', monospace;
+    font-size: 18px;
+    color: var(--pixel-green);
+    border: 1px solid var(--pixel-green);
+    padding: 2px 10px;
+  }
+
+  .cards-scroll {
+    display: flex;
+    gap: 12px;
+    overflow-x: auto;
+    padding-bottom: 12px;
+    scrollbar-width: thin;
+    scrollbar-color: var(--red) transparent;
+  }
+  .cards-scroll::-webkit-scrollbar { height: 4px; }
+  .cards-scroll::-webkit-scrollbar-track { background: transparent; }
+  .cards-scroll::-webkit-scrollbar-thumb { background: var(--red); }
+
+  .exp-card {
+    flex: 0 0 280px;
+    background: var(--card-bg);
+    border: 2px solid rgba(255,255,255,0.08);
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s;
+  }
+  .exp-card:hover {
+    transform: scale(1.04) translateY(-4px);
+    border-color: var(--red);
+    box-shadow: 0 8px 30px rgba(229,9,20,0.3), 4px 4px 0 var(--red);
+    z-index: 10;
+  }
+  .exp-card-thumb {
+    height: 160px;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .exp-card-thumb .thumb-bg {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 60px;
+  }
+  .exp-card-thumb .thumb-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, var(--card-bg) 0%, transparent 60%);
+  }
+  .exp-card-thumb .thumb-year {
+    position: absolute;
+    top: 10px; right: 10px;
+    font-family: 'Press Start 2P', monospace;
+    font-size: 8px;
+    background: var(--red);
+    color: white;
+    padding: 4px 8px;
+  }
+  .exp-card-body { padding: 14px; }
+  .exp-card-company {
+    font-family: 'Press Start 2P', monospace;
+    font-size: 9px;
+    color: var(--pixel-yellow);
+    margin-bottom: 6px;
+    letter-spacing: 1px;
+  }
+  .exp-card-role {
+    font-family: 'VT323', monospace;
+    font-size: 22px;
+    color: white;
+    margin-bottom: 6px;
+    line-height: 1.2;
+  }
+  .exp-card-date {
+    font-family: 'VT323', monospace;
+    font-size: 16px;
+    color: var(--muted);
+    margin-bottom: 10px;
+  }
+  .exp-card-tags { display: flex; flex-wrap: wrap; gap: 6px; }
+  .tag {
+    font-family: 'VT323', monospace;
+    font-size: 15px;
+    padding: 2px 8px;
+    border: 1px solid;
+  }
+  .tag-green { color: var(--pixel-green); border-color: var(--pixel-green); }
+  .tag-blue { color: var(--pixel-blue); border-color: var(--pixel-blue); }
+  .tag-pink { color: var(--pixel-pink); border-color: var(--pixel-pink); }
+  .tag-yellow { color: var(--pixel-yellow); border-color: var(--pixel-yellow); }
+
+  .skill-card {
+    flex: 0 0 200px;
+    background: var(--card-bg);
+    border: 2px solid rgba(255,255,255,0.08);
+    padding: 20px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s;
+  }
+  .skill-card:hover {
+    transform: scale(1.06) translateY(-4px);
+    border-color: var(--pixel-green);
+    box-shadow: 0 8px 20px rgba(0,255,65,0.2), 3px 3px 0 var(--pixel-green);
+  }
+  .skill-icon { font-size: 40px; margin-bottom: 10px; display: block; }
+  .skill-name {
+    font-family: 'Press Start 2P', monospace;
+    font-size: 8px;
+    color: white;
+    margin-bottom: 8px;
+    line-height: 1.6;
+  }
+  .skill-bar-wrap {
+    width: 100%;
+    height: 8px;
+    background: rgba(255,255,255,0.1);
+    margin-top: 8px;
+    position: relative;
+  }
+  .skill-bar {
+    height: 100%;
+    background: var(--pixel-green);
+    animation: fill-bar 2s ease-out forwards;
+    transform-origin: left;
+    transform: scaleX(0);
+  }
+  @keyframes fill-bar { to { transform: scaleX(1); } }
+  .skill-level {
+    font-family: 'VT323', monospace;
+    font-size: 14px;
+    color: var(--pixel-green);
+    margin-top: 4px;
+    display: flex;
+    justify-content: flex-end;
+  }
+
+  /* LEADERSHIP CARDS */
+  .leader-card {
+    flex: 0 0 300px;
+    background: var(--card-bg);
+    border: 2px solid rgba(255,255,255,0.08);
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s;
+  }
+  .leader-card:hover {
+    transform: scale(1.04) translateY(-4px);
+    border-color: var(--pixel-yellow);
+    box-shadow: 0 8px 30px rgba(245,197,24,0.25), 4px 4px 0 var(--pixel-yellow);
+    z-index: 10;
+  }
+  .leader-card-thumb {
+    height: 120px;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .leader-card-thumb .thumb-bg {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 52px;
+  }
+  .leader-card-thumb .thumb-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, var(--card-bg) 0%, transparent 60%);
+  }
+  .leader-card-thumb .thumb-year {
+    position: absolute;
+    top: 10px; right: 10px;
+    font-family: 'Press Start 2P', monospace;
+    font-size: 8px;
+    background: var(--pixel-yellow);
+    color: black;
+    padding: 4px 8px;
+  }
+  .leader-card-body { padding: 14px; }
+  .leader-card-org {
+    font-family: 'Press Start 2P', monospace;
+    font-size: 8px;
+    color: var(--pixel-yellow);
+    margin-bottom: 6px;
+    letter-spacing: 1px;
+    line-height: 1.6;
+  }
+  .leader-card-role {
+    font-family: 'VT323', monospace;
+    font-size: 20px;
+    color: white;
+    margin-bottom: 6px;
+    line-height: 1.3;
+  }
+  .leader-card-detail {
+    font-family: 'VT323', monospace;
+    font-size: 15px;
+    color: var(--pixel-green);
+    margin-bottom: 10px;
+  }
+  .leader-card-tags { display: flex; flex-wrap: wrap; gap: 6px; }
+
+  .edu-card {
+    flex: 0 0 320px;
+    background: var(--card-bg);
+    border: 2px solid rgba(255,255,255,0.08);
+    padding: 24px;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s;
+  }
+  .edu-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 4px;
+    background: var(--red);
+  }
+  .edu-card:hover {
+    transform: scale(1.04) translateY(-4px);
+    border-color: var(--pixel-yellow);
+    box-shadow: 0 8px 30px rgba(245,197,24,0.2), 3px 3px 0 var(--pixel-yellow);
+  }
+  .edu-icon { font-size: 32px; margin-bottom: 12px; display: block; }
+  .edu-degree {
+    font-family: 'Press Start 2P', monospace;
+    font-size: 9px;
+    color: var(--pixel-yellow);
+    margin-bottom: 8px;
+    line-height: 1.7;
+  }
+  .edu-school {
+    font-family: 'VT323', monospace;
+    font-size: 20px;
+    color: var(--text);
+    margin-bottom: 6px;
+  }
+  .edu-year {
+    font-family: 'VT323', monospace;
+    font-size: 17px;
+    color: var(--muted);
+  }
+
+  .modal-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.85);
+    z-index: 2000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s;
+    padding: 20px;
+  }
+  .modal-overlay.active { opacity: 1; pointer-events: all; }
+  .modal {
+    background: var(--card-bg);
+    border: 3px solid var(--red);
+    max-width: 700px;
+    width: 100%;
+    max-height: 85vh;
+    overflow-y: auto;
+    position: relative;
+    box-shadow: 6px 6px 0 var(--red), 0 0 60px rgba(229,9,20,0.3);
+    transform: scale(0.9);
+    transition: transform 0.3s;
+    scrollbar-width: thin;
+    scrollbar-color: var(--red) transparent;
+  }
+  .modal-overlay.active .modal { transform: scale(1); }
+  .modal-header {
+    padding: 24px 24px 0;
+    display: flex;
+    align-items: flex-start;
+    gap: 16px;
+    position: sticky;
+    top: 0;
+    background: var(--card-bg);
+    z-index: 10;
+    border-bottom: 2px solid rgba(255,255,255,0.1);
+    padding-bottom: 16px;
+  }
+  .modal-thumb {
+    width: 80px;
+    height: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 40px;
+    background: rgba(229,9,20,0.1);
+    border: 2px solid rgba(229,9,20,0.3);
+    flex-shrink: 0;
+  }
+  .modal-header-text { flex: 1; }
+  .modal-company {
+    font-family: 'Press Start 2P', monospace;
+    font-size: 9px;
+    color: var(--pixel-yellow);
+    margin-bottom: 6px;
+  }
+  .modal-title {
+    font-family: 'Press Start 2P', monospace;
+    font-size: 13px;
+    color: white;
+    margin-bottom: 6px;
+    line-height: 1.6;
+  }
+  .modal-date {
+    font-family: 'VT323', monospace;
+    font-size: 18px;
+    color: var(--pixel-green);
+  }
+  .modal-close {
+    font-family: 'Press Start 2P', monospace;
+    font-size: 12px;
+    color: var(--muted);
+    background: none;
+    border: 2px solid rgba(255,255,255,0.2);
+    padding: 8px 12px;
+    transition: all 0.2s;
+    flex-shrink: 0;
+    margin-left: auto;
+  }
+  .modal-close:hover { color: white; border-color: var(--red); background: rgba(229,9,20,0.1); }
+  .modal-body { padding: 24px; }
+  .modal-bullets { list-style: none; }
+  .modal-bullets li {
+    font-family: 'VT323', monospace;
+    font-size: 20px;
+    color: var(--text);
+    padding: 8px 0;
+    border-bottom: 1px solid rgba(255,255,255,0.05);
+    display: flex;
+    gap: 10px;
+    line-height: 1.4;
+  }
+  .modal-bullets li::before { content: '▶'; color: var(--red); flex-shrink: 0; margin-top: 2px; }
+  .modal-tags { margin-top: 20px; display: flex; flex-wrap: wrap; gap: 8px; }
+
+  .contact-section {
+    padding: 60px 48px;
+    background: linear-gradient(to right, rgba(229,9,20,0.05), transparent, rgba(229,9,20,0.05));
+    border-top: 2px solid rgba(229,9,20,0.2);
+    text-align: center;
+  }
+  .contact-title {
+    font-family: 'Press Start 2P', monospace;
+    font-size: 20px;
+    color: white;
+    margin-bottom: 12px;
+    text-shadow: 3px 3px 0 var(--red);
+  }
+  .contact-sub {
+    font-family: 'VT323', monospace;
+    font-size: 22px;
+    color: var(--muted);
+    margin-bottom: 40px;
+  }
+  .contact-cards {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+  .contact-card {
+    background: var(--card-bg);
+    border: 2px solid rgba(255,255,255,0.1);
+    padding: 24px 32px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    text-decoration: none;
+    transition: all 0.25s;
+    min-width: 160px;
+  }
+  .contact-card:hover { border-color: var(--pixel-green); transform: translateY(-4px); box-shadow: 3px 3px 0 var(--pixel-green); }
+  .contact-card-icon { font-size: 32px; }
+  .contact-card-label {
+    font-family: 'Press Start 2P', monospace;
+    font-size: 8px;
+    color: var(--muted);
+    letter-spacing: 1px;
+  }
+  .contact-card-val {
+    font-family: 'VT323', monospace;
+    font-size: 18px;
+    color: white;
+    word-break: break-all;
+    text-align: center;
+  }
+
+  footer {
+    padding: 24px 48px;
+    border-top: 1px solid rgba(255,255,255,0.05);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+  .footer-logo {
+    font-family: 'Press Start 2P', monospace;
+    font-size: 14px;
+    color: var(--red);
+    text-shadow: 2px 2px 0 #8b0000;
+  }
+  .footer-copy {
+    font-family: 'VT323', monospace;
+    font-size: 18px;
+    color: var(--muted);
+  }
+
+  #loader {
+    position: fixed;
+    inset: 0;
+    background: black;
+    z-index: 99999;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 24px;
+    transition: opacity 0.6s;
+  }
+  #loader.fade { opacity: 0; pointer-events: none; }
+  .loader-logo {
+    font-family: 'Press Start 2P', monospace;
+    font-size: 36px;
+    color: var(--red);
+    text-shadow: 4px 4px 0 #8b0000;
+    animation: flicker 0.5s infinite;
+  }
+  .loader-bar-wrap {
+    width: 240px;
+    height: 8px;
+    background: rgba(255,255,255,0.1);
+    border: 1px solid rgba(255,255,255,0.2);
+  }
+  .loader-bar {
+    height: 100%;
+    background: var(--red);
+    width: 0%;
+    animation: load-progress 1.8s ease-out forwards;
+  }
+  @keyframes load-progress { to { width: 100%; } }
+  .loader-text {
+    font-family: 'VT323', monospace;
+    font-size: 18px;
+    color: var(--muted);
+    letter-spacing: 3px;
+    animation: blink 1s infinite;
+  }
+  @keyframes blink { 0%,100% { opacity: 1; } 50% { opacity: 0; } }
+
+  .sparkle {
+    position: fixed;
+    pointer-events: none;
+    z-index: 9990;
+    width: 8px;
+    height: 8px;
+    background: var(--pixel-yellow);
+    animation: sparkle-anim 0.6s ease-out forwards;
+    image-rendering: pixelated;
+  }
+  @keyframes sparkle-anim {
+    0% { transform: scale(1) rotate(0deg); opacity: 1; }
+    100% { transform: scale(0) rotate(180deg) translate(20px, -20px); opacity: 0; }
+  }
+
+  @media (max-width: 768px) {
+    nav { padding: 12px 20px; }
+    .nav-links { display: none; }
+    .hero { padding: 0 20px 60px; }
+    .hero-name { font-size: 22px; }
+    .section-row { padding: 0 20px; }
+    .contact-section { padding: 40px 20px; }
+    footer { padding: 20px; flex-direction: column; text-align: center; }
+  }
+</style>
+</head>
+<body>
+
+<div id="loader">
+  <div class="loader-logo">SHARMA.CV</div>
+  <div class="loader-bar-wrap"><div class="loader-bar"></div></div>
+  <div class="loader-text">LOADING PROFILE...</div>
+</div>
+
+<div id="cursor">
+  <svg viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <rect x="0" y="0" width="4" height="4" fill="#E50914"/>
+    <rect x="4" y="4" width="4" height="4" fill="#E50914"/>
+    <rect x="8" y="8" width="4" height="4" fill="#E50914"/>
+    <rect x="4" y="8" width="4" height="4" fill="#ff6666"/>
+    <rect x="8" y="12" width="4" height="4" fill="#ff6666"/>
+    <rect x="0" y="4" width="4" height="4" fill="#ff9999"/>
+    <rect x="0" y="8" width="4" height="4" fill="#ff9999"/>
+    <rect x="12" y="12" width="4" height="4" fill="#E50914"/>
+    <rect x="12" y="16" width="4" height="4" fill="#8b0000"/>
+  </svg>
+</div>
+
+<nav id="navbar">
+  <div class="nav-logo">S.SHARMA</div>
+  <ul class="nav-links">
+    <li><a href="#experience">EXPERIENCE</a></li>
+    <li><a href="#skills">SKILLS</a></li>
+    <li><a href="#leadership">LEADERSHIP</a></li>
+    <li><a href="#education">EDUCATION</a></li>
+    <li><a href="#contact">CONTACT</a></li>
+  </ul>
+  <div class="nav-right">
+    <span class="pixel-badge">OPEN TO WORK</span>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-grid"></div>
+  <div class="hero-pixels" id="hero-pixels"></div>
+  <div class="hero-content">
+    <div class="hero-label">UNDERGRADUATE · NMIMS MUMBAI · 2026</div>
+    <h1 class="hero-name">SHAMBHAVI<br>SHARMA</h1>
+    <div class="hero-subtitle">▶ BUSINESS · AI · ANALYTICS</div>
+    <p class="hero-desc">Second-year BBA/BSc International Business student. Data analyst. Generative AI enthusiast. National risk simulation champion. Obsessed with building things that matter.</p>
+    <div class="hero-stats">
+      <div class="stat-box">
+        <span class="stat-num">3</span>
+        <span class="stat-label">INTERNSHIPS</span>
+      </div>
+      <div class="stat-box">
+        <span class="stat-num">8.84</span>
+        <span class="stat-label">CGPA</span>
+      </div>
+      <div class="stat-box">
+        <span class="stat-num">₹1L</span>
+        <span class="stat-label">PRIZE WON</span>
+      </div>
+      <div class="stat-box">
+        <span class="stat-num">C-SUITE</span>
+        <span class="stat-label">EXPOSURE</span>
+      </div>
+    </div>
+    <div class="hero-buttons">
+      <button class="btn-primary" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">
+        ▶ HIRE ME
+      </button>
+      <button class="btn-secondary" onclick="document.getElementById('experience').scrollIntoView({behavior:'smooth'})">
+        ⓘ MORE INFO
+      </button>
+    </div>
+  </div>
+  <div class="hero-scroll-hint">▼ SCROLL TO EXPLORE</div>
+</section>
+
+<!-- EXPERIENCE ROW -->
+<section class="section-row" id="experience">
+  <div class="row-header">
+    <span class="row-title">EXPERIENCE</span>
+    <span class="row-tag">3 ROLES</span>
+  </div>
+  <div class="cards-scroll">
+
+    <!-- Edupeer -->
+    <div class="exp-card" onclick="openModal('edupeer')">
+      <div class="exp-card-thumb">
+        <div class="thumb-bg" style="background: linear-gradient(135deg,#0a1a0a,#002a1a);">🎯</div>
+        <div class="thumb-overlay"></div>
+        <div class="thumb-year">2026</div>
+      </div>
+      <div class="exp-card-body">
+        <div class="exp-card-company">EDUPEER</div>
+        <div class="exp-card-role">Product & Growth Intern</div>
+        <div class="exp-card-date">Apr 2026 – Jul 2026</div>
+        <div class="exp-card-tags">
+          <span class="tag tag-green">Product</span>
+          <span class="tag tag-pink">Growth</span>
+          <span class="tag tag-blue">AI Tools</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Power of i -->
+    <div class="exp-card" onclick="openModal('powerofi')">
+      <div class="exp-card-thumb">
+        <div class="thumb-bg" style="background: linear-gradient(135deg,#0a0a1a,#001a2a);">📊</div>
+        <div class="thumb-overlay"></div>
+        <div class="thumb-year">2024</div>
+      </div>
+      <div class="exp-card-body">
+        <div class="exp-card-company">POWER OF I</div>
+        <div class="exp-card-role">Research Intern</div>
+        <div class="exp-card-date">Jul 2024 – Aug 2024</div>
+        <div class="exp-card-tags">
+          <span class="tag tag-blue">Research</span>
+          <span class="tag tag-yellow">Analytics</span>
+          <span class="tag tag-green">Strategy</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- CEAT -->
+    <div class="exp-card" onclick="openModal('ceat')">
+      <div class="exp-card-thumb">
+        <div class="thumb-bg" style="background: linear-gradient(135deg,#0a1a0a,#001a00);">🏭</div>
+        <div class="thumb-overlay"></div>
+        <div class="thumb-year">2023</div>
+      </div>
+      <div class="exp-card-body">
+        <div class="exp-card-company">CEAT TYRES</div>
+        <div class="exp-card-role">Business Strategy Intern</div>
+        <div class="exp-card-date">Jun 2023 – Jul 2023</div>
+        <div class="exp-card-tags">
+          <span class="tag tag-pink">GenAI</span>
+          <span class="tag tag-yellow">C-Suite</span>
+          <span class="tag tag-green">Supply Chain</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- SKILLS ROW -->
+<section class="section-row" id="skills">
+  <div class="row-header">
+    <span class="row-title">SKILLS & CERTS</span>
+    <span class="row-tag">EQUIPPED</span>
+  </div>
+  <div class="cards-scroll">
+
+    <div class="skill-card">
+      <span class="skill-icon">🐍</span>
+      <div class="skill-name">PYTHON</div>
+      <div class="skill-bar-wrap"><div class="skill-bar" style="width:82%; animation-delay:0.2s;"></div></div>
+      <div class="skill-level">82%</div>
+    </div>
+    <div class="skill-card">
+      <span class="skill-icon">☕</span>
+      <div class="skill-name">JAVA</div>
+      <div class="skill-bar-wrap"><div class="skill-bar" style="width:75%; animation-delay:0.3s;"></div></div>
+      <div class="skill-level">75%</div>
+    </div>
+    <div class="skill-card">
+      <span class="skill-icon">🌐</span>
+      <div class="skill-name">JAVASCRIPT</div>
+      <div class="skill-bar-wrap"><div class="skill-bar" style="width:78%; animation-delay:0.4s;"></div></div>
+      <div class="skill-level">78%</div>
+    </div>
+    <div class="skill-card">
+      <span class="skill-icon">🏗️</span>
+      <div class="skill-name">HTML & CSS</div>
+      <div class="skill-bar-wrap"><div class="skill-bar" style="width:85%; animation-delay:0.5s;"></div></div>
+      <div class="skill-level">85%</div>
+    </div>
+    <div class="skill-card">
+      <span class="skill-icon">📈</span>
+      <div class="skill-name">MS EXCEL ADVANCED</div>
+      <div class="skill-bar-wrap"><div class="skill-bar" style="width:88%; animation-delay:0.6s;"></div></div>
+      <div class="skill-level">88%</div>
+    </div>
+    <div class="skill-card">
+      <span class="skill-icon">🗄️</span>
+      <div class="skill-name">SQL</div>
+      <div class="skill-bar-wrap"><div class="skill-bar" style="width:80%; animation-delay:0.7s;"></div></div>
+      <div class="skill-level">80%</div>
+    </div>
+    <div class="skill-card">
+      <span class="skill-icon">📊</span>
+      <div class="skill-name">POWER BI</div>
+      <div class="skill-bar-wrap"><div class="skill-bar" style="width:78%; animation-delay:0.8s;"></div></div>
+      <div class="skill-level">78%</div>
+    </div>
+    <div class="skill-card">
+      <span class="skill-icon">🤖</span>
+      <div class="skill-name">GENERATIVE AI</div>
+      <div class="skill-bar-wrap"><div class="skill-bar" style="width:85%; animation-delay:0.9s;"></div></div>
+      <div class="skill-level">85%</div>
+    </div>
+    <div class="skill-card">
+      <span class="skill-icon">🔍</span>
+      <div class="skill-name">DATA ANALYTICS</div>
+      <div class="skill-bar-wrap"><div class="skill-bar" style="width:80%; animation-delay:1.0s;"></div></div>
+      <div class="skill-level">80%</div>
+    </div>
+    <div class="skill-card">
+      <span class="skill-icon">🎨</span>
+      <div class="skill-name">FIGMA & CANVA</div>
+      <div class="skill-bar-wrap"><div class="skill-bar" style="width:90%; animation-delay:1.1s;"></div></div>
+      <div class="skill-level">90%</div>
+    </div>
+    <div class="skill-card">
+      <span class="skill-icon">☁️</span>
+      <div class="skill-name">ORACLE CLOUD AI</div>
+      <div class="skill-bar-wrap"><div class="skill-bar" style="width:100%; animation-delay:1.2s; background: var(--pixel-yellow);"></div></div>
+      <div class="skill-level" style="color:var(--pixel-yellow);">CERTIFIED</div>
+    </div>
+    <div class="skill-card">
+      <span class="skill-icon">📉</span>
+      <div class="skill-name">GOOGLE DATA ANALYTICS</div>
+      <div class="skill-bar-wrap"><div class="skill-bar" style="width:100%; animation-delay:1.3s; background: var(--pixel-yellow);"></div></div>
+      <div class="skill-level" style="color:var(--pixel-yellow);">CERTIFIED</div>
+    </div>
+
+  </div>
+</section>
+
+<!-- LEADERSHIP ROW -->
+<section class="section-row" id="leadership">
+  <div class="row-header">
+    <span class="row-title">LEADERSHIP</span>
+    <span class="row-tag">UNLOCKED</span>
+  </div>
+  <div class="cards-scroll">
+
+    <!-- GOER -->
+    <div class="leader-card" onclick="openModal('goer')">
+      <div class="leader-card-thumb">
+        <div class="thumb-bg" style="background: linear-gradient(135deg,#1a1500,#2a2000);">🏆</div>
+        <div class="thumb-overlay"></div>
+        <div class="thumb-year">2026</div>
+      </div>
+      <div class="leader-card-body">
+        <div class="leader-card-org">IRM INDIA AFFILIATE</div>
+        <div class="leader-card-role">1st Place — GOER® National Champion</div>
+        <div class="leader-card-detail">₹1,00,000 Prize · Oxford & HDFC Judges</div>
+        <div class="leader-card-tags">
+          <span class="tag tag-yellow">National #1</span>
+          <span class="tag tag-green">Risk Strategy</span>
+          <span class="tag tag-pink">Team Lead</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- ET Now -->
+    <div class="leader-card" onclick="openModal('etnow')">
+      <div class="leader-card-thumb">
+        <div class="thumb-bg" style="background: linear-gradient(135deg,#0a0a1a,#1a0a2a);">📺</div>
+        <div class="thumb-overlay"></div>
+        <div class="thumb-year">2026</div>
+      </div>
+      <div class="leader-card-body">
+        <div class="leader-card-org">ET NOW</div>
+        <div class="leader-card-role">Panelist — Women in Finance & Investment</div>
+        <div class="leader-card-detail">With Alpa Shah & Lakshmi Iyer</div>
+        <div class="leader-card-tags">
+          <span class="tag tag-blue">Finance</span>
+          <span class="tag tag-pink">Media</span>
+          <span class="tag tag-yellow">C-Suite</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Vice Chairperson -->
+    <div class="leader-card" onclick="openModal('narrative')">
+      <div class="leader-card-thumb">
+        <div class="thumb-bg" style="background: linear-gradient(135deg,#001a1a,#002a2a);">🎙️</div>
+        <div class="thumb-overlay"></div>
+        <div class="thumb-year">2026–NOW</div>
+      </div>
+      <div class="leader-card-body">
+        <div class="leader-card-org">NMIMS — THE NARRATIVE CLUB</div>
+        <div class="leader-card-role">Vice Chairperson</div>
+        <div class="leader-card-detail">500+ students reached annually</div>
+        <div class="leader-card-tags">
+          <span class="tag tag-green">MUN</span>
+          <span class="tag tag-blue">Leadership</span>
+          <span class="tag tag-yellow">15–20 Members</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- EDUCATION ROW -->
+<section class="section-row" id="education">
+  <div class="row-header">
+    <span class="row-title">EDUCATION</span>
+    <span class="row-tag">UNLOCKED</span>
+  </div>
+  <div class="cards-scroll">
+    <div class="edu-card" onclick="openModal('nmims')">
+      <span class="edu-icon">🎓</span>
+      <div class="edu-degree">BBA / BSC INTERNATIONAL BUSINESS</div>
+      <div class="edu-school">NMIMS & Kingston University</div>
+      <div class="edu-year">2025 – 2028 · CGPA 8.84/10</div>
+      <div style="margin-top:12px;"><span class="tag tag-yellow">Mumbai</span> <span class="tag tag-blue">International</span></div>
+    </div>
+    <div class="edu-card" onclick="openModal('ibdp')">
+      <span class="edu-icon">🌍</span>
+      <div class="edu-degree">INTERNATIONAL BACCALAUREATE DIPLOMA (IBDP)</div>
+      <div class="edu-school">Bombay International School</div>
+      <div class="edu-year">2023 – 2025</div>
+      <div style="margin-top:12px;"><span class="tag tag-green">CS HL</span> <span class="tag tag-pink">Business HL</span> <span class="tag tag-blue">Maths SL</span></div>
+    </div>
+    <div class="edu-card" onclick="openModal('igcse')">
+      <span class="edu-icon">📚</span>
+      <div class="edu-degree">ICE CERTIFICATE (IGCSE – CAMBRIDGE)</div>
+      <div class="edu-school">Bombay International School</div>
+      <div class="edu-year">2018 – 2023</div>
+      <div style="margin-top:12px;"><span class="tag tag-blue">Cambridge</span> <span class="tag tag-yellow">IGCSE</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact-section" id="contact">
+  <div class="contact-title">INSERT COIN TO CONNECT</div>
+  <div class="contact-sub">Open to internships, collaborations & opportunities in Mumbai</div>
+  <div class="contact-cards">
+    <a href="mailto:shambhavismeee@gmail.com" class="contact-card">
+      <span class="contact-card-icon">✉️</span>
+      <span class="contact-card-label">EMAIL</span>
+      <span class="contact-card-val">shambhavismeee@gmail.com</span>
+    </a>
+    <a href="tel:+919969963606" class="contact-card">
+      <span class="contact-card-icon">📱</span>
+      <span class="contact-card-label">PHONE</span>
+      <span class="contact-card-val">+91 9969963606</span>
+    </a>
+    <a href="https://www.linkedin.com/in/shambhavi-sharma-9939b0323" target="_blank" class="contact-card">
+      <span class="contact-card-icon">💼</span>
+      <span class="contact-card-label">LINKEDIN</span>
+      <span class="contact-card-val">shambhavi-sharma</span>
+    </a>
+    <a href="https://shambhavirl.github.io/resume/" target="_blank" class="contact-card">
+      <span class="contact-card-icon">🌐</span>
+      <span class="contact-card-label">PORTFOLIO</span>
+      <span class="contact-card-val">shambhavirl.github.io</span>
+    </a>
+    <div class="contact-card" style="border-color:rgba(229,9,20,0.3);">
+      <span class="contact-card-icon">📍</span>
+      <span class="contact-card-label">LOCATION</span>
+      <span class="contact-card-val">Mumbai, India</span>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-logo">S.SHARMA</div>
+  <div class="footer-copy">© 2026 SHAMBHAVI SHARMA · ALL RIGHTS RESERVED · MADE WITH ♥ & PIXELS</div>
+</footer>
+
+<!-- MODALS -->
+<div class="modal-overlay" id="modal-overlay" onclick="closeModal(event)">
+  <div class="modal" id="modal-box">
+    <div class="modal-header" id="modal-header"></div>
+    <div class="modal-body" id="modal-body"></div>
+  </div>
+</div>
+
+<script>
+window.addEventListener('load', () => {
+  setTimeout(() => {
+    document.getElementById('loader').classList.add('fade');
+    setTimeout(() => document.getElementById('loader').remove(), 600);
+  }, 2000);
+});
+
+const cursor = document.getElementById('cursor');
+document.addEventListener('mousemove', e => {
+  cursor.style.left = (e.clientX - 2) + 'px';
+  cursor.style.top = (e.clientY - 2) + 'px';
+});
+document.addEventListener('mousedown', () => { cursor.style.transform = 'scale(0.8)'; });
+document.addEventListener('mouseup', () => { cursor.style.transform = 'scale(1)'; });
+
+document.addEventListener('click', e => {
+  for (let i = 0; i < 5; i++) {
+    const s = document.createElement('div');
+    s.className = 'sparkle';
+    const colors = ['#ffe066','#E50914','#00ff41','#ff6eb4','#00bfff'];
+    s.style.background = colors[Math.floor(Math.random()*colors.length)];
+    s.style.left = (e.clientX + (Math.random()-0.5)*20 - 4) + 'px';
+    s.style.top = (e.clientY + (Math.random()-0.5)*20 - 4) + 'px';
+    s.style.animationDelay = (Math.random()*0.2)+'s';
+    document.body.appendChild(s);
+    setTimeout(() => s.remove(), 700);
+  }
+});
+
+window.addEventListener('scroll', () => {
+  document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 50);
+});
+
+const pixelContainer = document.getElementById('hero-pixels');
+for (let i = 0; i < 20; i++) {
+  const p = document.createElement('div');
+  p.className = 'pixel-dot';
+  p.style.left = Math.random()*100 + '%';
+  p.style.animationDuration = (5+Math.random()*10)+'s';
+  p.style.animationDelay = (Math.random()*10)+'s';
+  const colors = ['#E50914','#00ff41','#ff6eb4','#00bfff','#ffe066'];
+  p.style.background = colors[Math.floor(Math.random()*colors.length)];
+  pixelContainer.appendChild(p);
+}
+
+const modals = {
+  edupeer: {
+    icon: '🎯',
+    company: 'EDUPEER CAREER CONSULTANCY',
+    title: 'Product & Growth Intern',
+    date: 'April 2026 – July 2026',
+    bullets: [
+      'Designed the homepage experience for Student Interest Compass, an AI-powered student assessment tool — from concept through deployment',
+      'Owned and grew the company\'s Instagram presence, driving 2.5M+ views and expanding brand visibility among prospective students',
+      'Managed content strategy and stakeholder communications independently across 3 months',
+      'Used Figma for UI design and collaborated with the product team on feature rollout'
+    ],
+    tags: [
+      {label:'Product Design', cls:'tag-green'}, {label:'Growth', cls:'tag-pink'},
+      {label:'Figma', cls:'tag-blue'}, {label:'2.5M+ Views', cls:'tag-yellow'}
+    ]
+  },
+  powerofi: {
+    icon: '📊',
+    company: 'POWER OF I (IN ASSOC. WITH BELDON)',
+    title: 'Research Intern',
+    date: 'July 2024 – August 2024',
+    bullets: [
+      'Researched emerging HR and organizational behavior trends supporting client-facing consulting strategy',
+      'Analyzed industry data and collaborated with cross-functional teams to synthesize findings into actionable recommendations',
+      'Prepared structured reports and stakeholder-ready documentation',
+      'Applied risk-aware strategic frameworks to ambiguous, data-sparse consulting environments'
+    ],
+    tags: [
+      {label:'Research', cls:'tag-blue'}, {label:'HR Analytics', cls:'tag-yellow'},
+      {label:'Consulting', cls:'tag-green'}, {label:'Reporting', cls:'tag-pink'}
+    ]
+  },
+  ceat: {
+    icon: '🏭',
+    company: 'CEAT TYRES',
+    title: 'Business Strategy Intern',
+    date: 'June 2023 – July 2023',
+    bullets: [
+      'Built and presented a Generative AI use case for the tyre manufacturing supply chain directly to the CFO, COO, and Factory Head',
+      'Identified efficiency gains and control gaps across production workflows, translating floor-level observations into governance-ready insights for 3 senior executives',
+      'Conducted on-site factory visits to map end-to-end industrial operations and supply chain workflows',
+      'Adapted communication for high-stakes C-suite presentation contexts'
+    ],
+    tags: [
+      {label:'GenAI', cls:'tag-pink'}, {label:'C-Suite', cls:'tag-yellow'},
+      {label:'Supply Chain', cls:'tag-blue'}, {label:'Strategy', cls:'tag-green'}
+    ]
+  },
+  goer: {
+    icon: '🏆',
+    company: 'IRM INDIA AFFILIATE',
+    title: '1st Place — GOER® (Game of Enterprise Risk)',
+    date: '2026 — National Championship',
+    bullets: [
+      'Led 9-member team "The Hedge Minds" to rank #1 nationally against university teams across India',
+      'Won ₹1,00,000 prize in India\'s premier enterprise risk simulation',
+      'Evaluated by senior leaders from Oxford University and HDFC',
+      'Applied real-time risk identification, scenario analysis, and strategic decision-making under pressure across multiple competitive rounds',
+      'Coordinated team planning, role allocation, and execution strategy throughout the multi-round competition'
+    ],
+    tags: [
+      {label:'National #1', cls:'tag-yellow'}, {label:'₹1L Prize', cls:'tag-green'},
+      {label:'Risk Strategy', cls:'tag-pink'}, {label:'Team Lead', cls:'tag-blue'}
+    ]
+  },
+  etnow: {
+    icon: '📺',
+    company: 'ET NOW',
+    title: 'Panelist — Women in Finance & Investment',
+    date: '2026',
+    bullets: [
+      'Selected to join a panel with senior finance leaders Alpa Shah and Lakshmi Iyer',
+      'Discussed capital ownership, risk strategy, and financial decision-making at scale',
+      'Represented the student and early-career perspective in a nationally broadcast finance discussion',
+      'Demonstrated executive communication and subject matter confidence in a live media format'
+    ],
+    tags: [
+      {label:'Finance', cls:'tag-blue'}, {label:'Media', cls:'tag-pink'},
+      {label:'Risk Strategy', cls:'tag-yellow'}, {label:'Live Panel', cls:'tag-green'}
+    ]
+  },
+  narrative: {
+    icon: '🎙️',
+    company: 'NMIMS — THE NARRATIVE CLUB',
+    title: 'Vice Chairperson',
+    date: 'April 2026 – Present',
+    bullets: [
+      'Lead a 15–20 member student council running Model United Nations conferences, debates, the college yearbook, and student magazine',
+      'Programmes reach 500+ students across the academic year',
+      'Manage cross-functional coordination across events, editorial, and communications teams',
+      'Oversee planning, logistics, and execution for all Narrative Club activities at NMIMS'
+    ],
+    tags: [
+      {label:'MUN', cls:'tag-green'}, {label:'Leadership', cls:'tag-blue'},
+      {label:'500+ Students', cls:'tag-yellow'}, {label:'Events', cls:'tag-pink'}
+    ]
+  },
+  nmims: {
+    icon: '🎓',
+    company: 'NMIMS & KINGSTON UNIVERSITY',
+    title: 'BBA / BSc International Business',
+    date: '2025 – 2028 · CGPA: 8.84/10',
+    bullets: [
+      'Dual-degree program combining business management and international studies',
+      'First year CGPA: 8.84/10',
+      'Coursework: financial management, marketing, organizational behavior, business strategy',
+      'NMIMS Mumbai — one of India\'s top business schools',
+      'Kingston University (UK) affiliation providing international academic exposure'
+    ],
+    tags: [
+      {label:'8.84 CGPA', cls:'tag-yellow'}, {label:'International', cls:'tag-blue'},
+      {label:'BBA', cls:'tag-green'}, {label:'Ongoing', cls:'tag-pink'}
+    ]
+  },
+  ibdp: {
+    icon: '🌍',
+    company: 'BOMBAY INTERNATIONAL SCHOOL',
+    title: 'International Baccalaureate Diploma (IBDP)',
+    date: '2023 – 2025',
+    bullets: [
+      'Completed the globally recognized IB Diploma Programme',
+      'HL subjects: Computer Science, English Literature, Business Management',
+      'SL subjects: Mathematics AA, Physics, Spanish Ab Initio',
+      'Developed critical thinking, research, and interdisciplinary analytical skills'
+    ],
+    tags: [
+      {label:'CS HL', cls:'tag-pink'}, {label:'Business HL', cls:'tag-blue'},
+      {label:'Maths SL', cls:'tag-green'}
+    ]
+  },
+  igcse: {
+    icon: '📚',
+    company: 'BOMBAY INTERNATIONAL SCHOOL',
+    title: 'ICE Certificate — IGCSE Cambridge',
+    date: '2018 – 2023',
+    bullets: [
+      'Cambridge IGCSE — internationally benchmarked qualification',
+      'Built strong foundation in sciences, mathematics, and humanities',
+      'Developed early analytical and structured thinking skills'
+    ],
+    tags: [
+      {label:'Cambridge', cls:'tag-blue'}, {label:'IGCSE', cls:'tag-yellow'},
+      {label:'Foundation', cls:'tag-green'}
+    ]
+  }
+};
+
+function openModal(key) {
+  const d = modals[key];
+  const header = document.getElementById('modal-header');
+  const body = document.getElementById('modal-body');
+  header.innerHTML = `
+    <div class="modal-thumb">${d.icon}</div>
+    <div class="modal-header-text">
+      <div class="modal-company">${d.company}</div>
+      <div class="modal-title">${d.title}</div>
+      <div class="modal-date">▶ ${d.date}</div>
+    </div>
+    <button class="modal-close" onclick="document.getElementById('modal-overlay').classList.remove('active')">✕</button>
+  `;
+  body.innerHTML = `
+    <ul class="modal-bullets">
+      ${d.bullets.map(b => `<li>${b}</li>`).join('')}
+    </ul>
+    <div class="modal-tags">
+      ${d.tags.map(t => `<span class="tag ${t.cls}">${t.label}</span>`).join('')}
+    </div>
+  `;
+  document.getElementById('modal-overlay').classList.add('active');
+}
+
+function closeModal(e) {
+  if (e.target === document.getElementById('modal-overlay')) {
+    document.getElementById('modal-overlay').classList.remove('active');
+  }
+}
+
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape') document.getElementById('modal-overlay').classList.remove('active');
+});
+</script>
+</body>
+</html>
